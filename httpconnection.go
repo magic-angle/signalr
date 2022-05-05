@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 
@@ -74,7 +74,7 @@ func NewHTTPConnection(ctx context.Context, address string, options ...func(*htt
 		return nil, fmt.Errorf("%v %v -> %v", req.Method, req.URL.String(), resp.Status)
 	}
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
